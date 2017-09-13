@@ -13,15 +13,9 @@
 |*                                         - Moving Forward -                                         *|
 |*                                      ROBOTC on VEX 2.0 CORTEX                                      *|
 |*                                                                                                    *|
-|*  This program instructs your robot to move forward at full power for three seconds.  There is a    *|
-|*  two second pause at the beginning of the program.                                                 *|
+|*  This program allows your robot to move back and forth, first 0,5m and back then 1m and back and		*|
+|*	so on until you reach 2,5m.																																				*|
 |*                                                                                                    *|
-|*                                        ROBOT CONFIGURATION                                         *|
-|*    NOTES:                                                                                          *|
-|*    1)  Reversing 'rightMotor' (port 2) in the "Motors and Sensors Setup" is needed with the        *|
-|*        "Squarebot" mode, but may not be needed for all robot configurations.                       *|
-|*    2)  Power levels that can be assigned to a motor port range from -127 (full reverse) to         *|
-|*        127 (full forward).                                                                         *|
 |*                                                                                                    *|
 |*    MOTORS & SENSORS:                                                                               *|
 |*    [I/O Port]          [Name]              [Type]                [Description]                     *|
@@ -30,18 +24,20 @@
 \*-----------------------------------------------------------------------------------------------4246-*/
 
 
-//+++++++++++++++++++++++++++++++++++++++++++++| MAIN |+++++++++++++++++++++++++++++++++++++++++++++++
+
 const int BASETIME=925;
+
 void drive_backward(int i)
 {
-	motor[rightMotor] = -127;
+	motor[rightMotor] = -117;
 	motor[leftMotor]  = -127;
 	wait1Msec(BASETIME*i);
 }
+
 void drive_forward(int i)
 {
 	motor[rightMotor] = 127;
-	motor[leftMotor]  = 127;
+	motor[leftMotor]  = 107;
 	wait1Msec(BASETIME*i);
 }
 
@@ -51,18 +47,6 @@ task main()
 	for(int i = 1; i<6;i++){
 		drive_forward(i);
 		drive_backward(i);
-	}
-
-
-
-	motor[rightMotor] = -127;
-	motor[leftMotor]  = -127;
-	wait1Msec(BASETIME);
-
-
-
-
 
 }
-
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+}
