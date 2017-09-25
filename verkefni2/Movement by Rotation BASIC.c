@@ -8,9 +8,8 @@
 |*                                      - Movement by Rotation -                                      *|
 |*                                      ROBOTC on VEX 2.0 CORTEX                                      *|
 |*                                                                                                    *|
-|*  This program uses the Shaft Encoders to move forward for a certain distance.                      *|
-|*  There is a two second pause at the beginning of the program.                                      *|
-|*                                                                                                    *|
+|*  This program uses the Shaft Encoders to move forward for a certain distance. Turn 90 degrees left *|
+|*  and drive forward, turn right an drive forward.                                                                                                  *|
 |*                                        ROBOT CONFIGURATION                                         *|
 |*    NOTES:                                                                                          *|
 |*    1)  Reversing 'rightMotor' (port 2) in the "Motors and Sensors Setup" is needed with the        *|
@@ -27,11 +26,11 @@
 |*    Digital - Port 1,2  rightEncoder        VEX Quadrature enc.   Right side encoder                *|
 |*    Digital - Port 3,4  leftEncoder         VEX Quadrature enc.   Left side encoder                 *|
 \*-----------------------------------------------------------------------------------------------4246-*/
-//14,5/5,15=2,8
+//16,5/5,15=3,2
 
 
 const int ROTATION=557;
-float TURNBASE=2.8;
+float TURNBASE=3.2;
 void drive_forward(int i)
 {
 	while(abs(SensorValue[leftEncoder]) < ROTATION){
@@ -57,7 +56,7 @@ void turn_left(int i)
 }
 void turn_right(int i)
 {
-	while(abs(SensorValue[rightEncoder]) < TURNBASE*i)
+	while(abs(SensorValue[leftEncoder]) < TURNBASE*i)
 	{
 		motor[leftMotor]=63;
 		motor[rightMotor]=-63;
@@ -76,11 +75,11 @@ task main()
 	drive_forward(i);
 	reset_encoder();
 	turn_right(90);
-
+	reset_encoder();
 	drive_forward(i);
 	reset_encoder();
 	turn_right(90);
-
+	reset_encoder();
 	drive_forward(i);
 
 
