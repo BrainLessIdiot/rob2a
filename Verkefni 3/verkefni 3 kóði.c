@@ -15,7 +15,7 @@
 |*  the second is the if vex thigy wich is saying if the button on the controller is pressed then     *|
 |*  this happens ... the clawmotor opens or closes depending on what u chose to press                 *|
 |*  the else if is for if the other button is pressed it closes the claw                              *|
-|*  then i just copied the last part and revesed  it putting 5 insted of 6 in the Btn6D and Btn6U     *|
+|*  then i just copied the last part and revesed  it putting 5 insted of 6 in the Btn6D and Btn6U      *|
 |*                                        ROBOT CONFIGURATION                                         *|
 |*    NOTES:                                                                                          *|
 |*    1)  Reversing 'rightMotor' (port 2) in the "Motors and Sensors Setup" is needed with the        *|
@@ -41,6 +41,8 @@ while(1==1)
 	motor[rightMotor]=vexRT[Ch2];
 	motor[leftMotor]=vexRT[Ch1];
 
+	motor[udmotor]=vexRT[Ch3];
+	motor[udmotor]=vexRT[Ch4];
 	if(vexRT[Btn6U]==1)
 	{
 		motor[clawMotor] = 127;
@@ -55,22 +57,14 @@ while(1==1)
 	motor[clawMotor]= 0;
 	}
 
-	if(vexRT[Btn5U]==1)
+	if(vexRT[Btn8D] ==1)
 	{
-		motor[udMotor] = 127;
+	StopAllTasks();
+	}
 
-	}
-	else if(vexRT[Btn5D]== 1)
-	{
-		motor[udMotor]= -127;
-	}
-	else
-	{
-	motor[udMotor]= 0;
-	}
+
+
 }
-
-
 }
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
