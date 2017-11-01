@@ -8,9 +8,9 @@
 |*                                 - Forward until Close Proximity -                                  *|
 |*                                      ROBOTC on VEX 2.0 CORTEX                                      *|
 |*                                                                                                    *|
-|*  This program instructs the robot to drive forward at half speed until the Ultrasonic Sensor       *|
-|*  detects an obstruction within 20 inches of it.                                                    *|
-|*  There is a two second pause at the beginning of the program.                                      *|
+|*  The Program Will Only work during the day or when the light is on becouse the lightSensor will    *|
+|*  Detect it and tell the robot to start moving when it moves then when it gets within 63cm then it  *|
+|*  stops and it will turn to the left then start moving again                                        *|
 |*                                                                                                    *|
 |*                                        ROBOT CONFIGURATION                                         *|
 |*    NOTES:                                                                                          *|
