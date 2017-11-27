@@ -28,7 +28,7 @@ void follow_line(int i)
   int threshold2 = 2700;    /* found by taking a reading on both DARK and LIGHT    */
                         /* surfaces, adding them together, then dividing by 2. */
 
-  while(SensorValue(Button) < 1 && SensorValue(inputSonar) > 18)
+  while(SensorValue(inputSonar) > 15)
   {
     // RIGHT sensor sees dark:
    if(SensorValue(lineFollowerRIGHT) > threshold)
@@ -66,9 +66,10 @@ void arm_down()
 
 void arm_up()
 {
+		wait1Msec(900);
+		motor[armMotor] = -50;
 
-		motor[armMotor] = -100;
-		wait1Msec(1500);
+
 }
 
 void claw_close()
@@ -79,15 +80,23 @@ void claw_close()
 }
 void claw_open()
 {
+	wait1Msec(1000);
 	motor[clawMotor] = -40;
 	wait1Msec(1000);
 }
 
-void turn_around()
+void turn_around(int i)
 {
-	motor[leftMotor] = -40;
-	motor[rightMotor] = 40;
 	wait1Msec(1000);
+	motor[leftMotor] = 40;
+	motor[rightMotor] = -40;
+	wait1Msec(BASETIME*i)
+
+}
+void stop_motor()
+{
+		motor[leftMotor] = 0;
+		motor[rightMotor] = 0;
 }
 
 
@@ -98,9 +107,15 @@ task main()
 	{
 		follow_line(i);
 	}
+	stop_motor();
 	claw_open();
 	arm_down();
 	claw_close();
 	arm_up();
-	turn_around();
+	turn_around(i);
+	follow_line(i);
+
+
+
+
 }
