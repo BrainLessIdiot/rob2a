@@ -17,7 +17,7 @@
 // button in front of the robot then it will stop all tasks.
 //+++++++++++++++++++++++++++++++++++++++++++++| MAIN |+++++++++++++++++++++++++++++++++++++++++++++++
 const int POTENTIO = 1760;
-const int BASETIME = 450;
+const int BASETIME = 690;
 //(920)
 
 void follow_line(int i)
@@ -28,7 +28,7 @@ void follow_line(int i)
   int threshold2 = 2700;    /* found by taking a reading on both DARK and LIGHT    */
                         /* surfaces, adding them together, then dividing by 2. */
 
-  while(SensorValue(inputSonar) > 15)
+  while(SensorValue(inputSonar) > 19)
   {
     // RIGHT sensor sees dark:
    if(SensorValue(lineFollowerRIGHT) > threshold)
@@ -68,6 +68,8 @@ void arm_up()
 {
 		wait1Msec(900);
 		motor[armMotor] = -50;
+		wait1Msec(300);
+		motor[armMotor] = -20;
 
 
 }
@@ -88,8 +90,8 @@ void claw_open()
 void turn_around(int i)
 {
 	wait1Msec(1000);
-	motor[leftMotor] = 40;
-	motor[rightMotor] = -40;
+	motor[leftMotor] = 120;
+	motor[rightMotor] = -90;
 	wait1Msec(BASETIME*i)
 
 }
@@ -103,7 +105,7 @@ void stop_motor()
 
 task main()
 {
-	while (SensorValue(inputSonar) > 18)
+	while (SensorValue(inputSonar) >= 19)
 	{
 		follow_line(i);
 	}
@@ -112,7 +114,9 @@ task main()
 	arm_down();
 	claw_close();
 	arm_up();
+	stop_motor();
 	turn_around(i);
+	stop_motor();
 	follow_line(i);
 
 
