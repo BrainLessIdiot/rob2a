@@ -11,23 +11,24 @@
 #include "./myheaders/myhead.h"
 
 #include "./mydrivefunctions/drive.c"
-task verk3
-	{
-		remote();
 
-	}
-task verk1
-	{
-		forward();
-	}
-task verk2
+task verk3()
 {
-	drive_ForAndBack();
+	remote();
+
+}
+task verk1()
+{
+	forward();
+}
+task verk2()
+{
+
 }
 
 task main()
 {
-		while(vexRT[Btn8D] == 0)
+	while(vexRT[Btn8D] == 0)
 	{
 		motor[rightMotor]=vexRT[Ch1];
 		motor[leftMotor]=vexRT[Ch2];
@@ -47,11 +48,6 @@ task main()
 
 		}
 
-
-
-
-		}
-
-
+	}
 
 }
