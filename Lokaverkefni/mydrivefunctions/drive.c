@@ -1,39 +1,4 @@
-void remote(){
-	while(vexRT[Btn8D] == 0)
-	{
-		motor[rightMotor]=vexRT[Ch1];
-		motor[leftMotor]=vexRT[Ch2];
 
-		if(vexRT[Btn6U]==1)
-		{
-			motor[clawMotor] = 127;
-
-		}
-		else if(vexRT[Btn6D]== 1)
-		{
-			motor[clawMotor]= -127;
-		}
-		else
-		{
-		motor[clawMotor]= 0;
-		}
-
-		if(vexRT[Btn5U]==1)
-		{
-		motor[udMotor] = 127;
-
-		}
-		else if(vexRT[Btn5D]== 1)
-		{
-			motor[udMotor]= -127;
-		}
-		else
-		{
-		motor[udMotor]= 0;
-		}
-	}
-
-}
 
 void forward()
 {
@@ -65,20 +30,18 @@ void forward()
 	}
 }
 
-const int BASETIME=925;
-
 void drive_backward(int i)
 {
 	motor[rightMotor] = -117;
 	motor[leftMotor]  = -127;
-	wait1Msec(BASETIME*i);
+	wait1Msec(BASETIME2*i);
 }
 
 void drive_forward(int i)
 {
 	motor[rightMotor] = 127;
 	motor[leftMotor]  = 107;
-	wait1Msec(BASETIME*i);
+	wait1Msec(BASETIME2*i);
 }
 void forward2()
 {
@@ -101,6 +64,45 @@ void forward2()
 
 			}
 	}
+void remote()
+{
+	while(1==1)
+{
+	motor[rightMotor]=vexRT[Ch2];
+	motor[leftMotor]=vexRT[Ch1];
+
+	if(vexRT[Btn6U]==1)
+	{
+		motor[clawMotor] = 127;
+
+	}
+	else if(vexRT[Btn6D]== 1)
+	{
+		motor[clawMotor]= -127;
+	}
+	else
+	{
+	motor[clawMotor]= 0;
+	}
+
+	if(vexRT[Btn5U]==1)
+	{
+		motor[armMotor] = 127;
+
+	}
+	else if(vexRT[Btn5D]== 1)
+	{
+		motor[armMotor]= -127;
+	}
+	else
+	{
+	motor[armMotor]= 0;
+	}
+}
+
+
+}
+
 
 void verkefni5()
 {
@@ -125,24 +127,105 @@ void verkefni5()
     if(SensorValue(lineFollowerRIGHT) > threshold)
     {
 
-      motor[leftMotor]  = 80;
+      motor[leftMotor]  = 120;
       motor[rightMotor] = 0;
     }
 
-    if(SensorValue(lineFollowerCENTER) > threshold2)
+    if(SensorValue(lineFollowerCENTER) < threshold2)
     {
 
-      motor[leftMotor]  = 80;
-      motor[rightMotor] = 80;
+      motor[leftMotor]  = 120;
+      motor[rightMotor] = 120;
     }
 
     if(SensorValue(lineFollowerLEFT) > threshold)
     {
 
       motor[leftMotor]  = 0;
-      motor[rightMotor] = 80;
+      motor[rightMotor] = 120;
     }
 
 }
 
 }
+
+
+	void follow_line(int i)
+	{
+		wait1Msec(200);
+
+
+
+
+	  while(SensorValue(sonarSensor) > 19)
+	  {
+
+	   if(SensorValue(lineFollowerRIGHT) > threshold)
+	    {
+
+	      motor[leftMotor]  = 80;
+	      motor[rightMotor] = 0;
+	    }
+
+	    if(SensorValue(lineFollowerCENTER) > threshold2)
+	    {
+
+	      motor[leftMotor]  = 80;
+	      motor[rightMotor] = 80;
+	    }
+
+	    if(SensorValue(lineFollowerLEFT) > threshold)
+	    {
+
+	      motor[leftMotor]  = 0;
+	      motor[rightMotor] = 80;
+	    }
+	 }
+
+
+	}
+
+	void arm_down()
+	{
+				motor[armMotor] = 30;
+				wait1Msec(1000);
+				motor[armMotor] = -10;
+
+	}
+
+	void arm_up()
+	{
+			wait1Msec(900);
+			motor[armMotor] = -50;
+			wait1Msec(300);
+			motor[armMotor] = -20;
+
+
+	}
+
+	void claw_close()
+	{
+			wait1Msec(1000);
+			motor[clawMotor] = 40;
+			wait1Msec(1000);
+	}
+	void claw_open()
+	{
+		wait1Msec(1000);
+		motor[clawMotor] = -40;
+		wait1Msec(1000);
+	}
+
+	void turn_around(int i)
+	{
+		wait1Msec(1000);
+		motor[leftMotor] = 120;
+		motor[rightMotor] = -90;
+		wait1Msec(BASETIME*i);
+
+	}
+	void stop_motor()
+	{
+			motor[leftMotor] = 0;
+			motor[rightMotor] = 0;
+	}
