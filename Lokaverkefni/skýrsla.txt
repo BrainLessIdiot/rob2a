@@ -1,0 +1,22 @@
+Skýrsla Um Lokaverkefni Rob2a
+
+Forritið inniheldur öll forritunar verkefni sem við höfum gert í Robotics. 
+Lokaverkefnið notar fjarsteringunna sem er tengd við forritið, þegar við ýtum á einhvern takka á fjarsteringunni
+breytist forritið í sú verkefni sem við völdum takka fyrir, eins og verkefni 3 er tengt við takka 8D og
+þegar við ýtum á takkann 8D þá keyrir forritið verkefni 3 og í verkefni 3 getum við stjórnað robotinum sjálfir og ef við ýttum á annan takka 
+þá keyrir forritið annað verkefni.
+
+
+Robotin var eiginlega ekkert breyttur fyrir þetta verkefni nema fyrir sonar sensor hann
+var breyttur til að geta virkað fyrir verkefni 4 annars var róbotinn ekkert breyttur
+
+Mótorar,sensorar og encoderar notaðir í verkefninu voru
+_____________________
+ ~4 Vex 269 motorar
+ ~1 light sensor
+ ~1 Potentiometer
+ ~3 LineFollower sensor
+ ~1 sonar sensor
+ ~1 QuadEncoder sensor
+ ~1 Button(Touch sensor)
+_____________________
